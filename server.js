@@ -27,7 +27,7 @@ app.set('timeout', 30000);
 
 // Enable CORS with explicit support for multipart/form-data
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'http://ueexam.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
