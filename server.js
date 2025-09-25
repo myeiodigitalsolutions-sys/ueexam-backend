@@ -28,7 +28,7 @@ app.set('timeout', 30000);
 // Enable CORS with explicit support for multipart/form-data
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://ueexam-riwf.vercel.app/',
+  'https://ueexam-riwf.vercel.app',
 ];
 
 const corsOptions = {
@@ -329,4 +329,5 @@ process.on('uncaughtException', (error) => {
 process.on('unhandledRejection', (reason, promise) => {
   console.error('❌ Unhandled Rejection at:', promise, 'reason:', reason);
   process.exit(1);
+
 });
