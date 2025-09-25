@@ -26,17 +26,27 @@ global.videoStreamServer = null;
 app.set('timeout', 30000);
 
 // Enable CORS with explicit support for multipart/form-data
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",       // local dev
-      "https://ueexam.vercel.app" // deployed frontend
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  })
-);
+const allowedOrigins = [
+  "http://localhost:3000",         // local dev
+  "https://ueexam.vercel.app"      // your Vercel frontend
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps, curl, Postman)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
+
 
 app.use(cors({
   origin: (origin, callback) => {
